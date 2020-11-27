@@ -1,11 +1,11 @@
 import sqlite3
 import sys
-from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 from main_ui import Ui_MainWindow
+from add import Ui_window
 
 
-class MyWidget(QMainWindow, Ui_MainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow, Ui_window):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -17,7 +17,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.pushButton_2.clicked.connect(self.add)
 
     def add(self):
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.dasupUi(self)
         self.title = self.lineEdit_2.text()
         self.country = self.lineEdit_3.text()
         self.taste = self.lineEdit_4.text()
@@ -30,7 +30,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
             '{self.flaver}')""")
         self.con.commit()
         self.con.close()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
         self.table()
 
     def table(self):
@@ -45,7 +45,6 @@ class MyWidget(QMainWindow, Ui_MainWindow):
             for j, val in enumerate(elem):
                 self.tableWidget.setItem(i, j, QTableWidgetItem(str(val)))
         self.tableWidget.setHorizontalHeaderLabels(['ID', 'название', 'страна', 'вкус', 'аромат'])
-
 
 
 def main():
