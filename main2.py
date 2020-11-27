@@ -2,12 +2,13 @@ import sqlite3
 import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
+from main_ui import Ui_MainWindow
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
         self.title = ''
         self.country = ''
         self.taste = ''
