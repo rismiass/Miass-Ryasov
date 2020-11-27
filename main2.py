@@ -34,7 +34,7 @@ class MyWidget(QMainWindow, Ui_MainWindow, Ui_window):
         self.table()
 
     def table(self):
-        self.con = sqlite3.connect("coffee.sqlite")
+        self.con = sqlite3.connect("data/coffee.sqlite")
         cur = self.con.cursor()
         result = cur.execute(f"""
                                     SELECT * FROM cofe""").fetchall()
